@@ -3,7 +3,7 @@ using System.Threading;
 
 class Program
 {
-    static int[] lightStates = { 0, 0 };
+    static int[] lightStates = { 10, 0 };
     static int[] lightCounters = { 50, 0 };
     static int[] lightDurations = { 10, 10 };
 
