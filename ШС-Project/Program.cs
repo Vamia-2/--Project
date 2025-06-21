@@ -100,15 +100,15 @@ class Program
 
             // Назва режиму
             Console.SetCursorPosition(0, 0);
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("Режим: ");
             Console.ForegroundColor = ConsoleColor.White;
-            switch (mode)
-            {
-                case 1: Console.Write("Звичайний"); break;
-                case 2: Console.Write("Блимання жовтим"); break;
-                case 3: Console.Write("Стоп"); break;
-            }
+            Console.Write("Режим: ");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("1-Звичайний; ");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("2-Блимання жовтим; ");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write("3-Стоп");
+            Console.ForegroundColor = ConsoleColor.White;
 
             Thread.Sleep(500);
         }
