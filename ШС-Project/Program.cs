@@ -5,8 +5,8 @@ class Program
 {
     // 0 - горизонтальні, 1 - вертикальні
     static int[] lightStates = { 0, 0 }; // кожна група має свій стан
-    static int[] lightCounters = { 0, 0 };
-    static int[] lightDurations = { 7, 10 }; // кожна група працює з іншою швидкістью зміни світла
+    static int[] lightCounters = { 50, 0 };
+    static int[] lightDurations = { 10, 10 }; // кожна група працює з іншою швидкістью зміни світла
 
     static int[] horizontalCarPositions = { 0, 20 };
     static int[] horizontalCarSpeeds = { 1, 2 };
@@ -51,7 +51,7 @@ class Program
                 int nextPos = (horizontalCarPositions[i] + horizontalCarSpeeds[i]) % roadWidth;
 
                 // Червоне світло справа (або зліва) світлофора?
-                if (lightStates[0] == 0 && nextPos == 39) // червоне, світлофор на 40
+                if (lightStates[0] == 0 && nextPos == 27) // червоне, світлофор на 40
                 {
                     // зупинитися, не рухаємо
                 }
@@ -66,7 +66,7 @@ class Program
                 int nextPos = (verticalCarPositions[i] + verticalCarSpeeds[i]) % roadHeight;
 
                 // Червоне світло зверху світлофора?
-                if (lightStates[1] == 0 && nextPos == 12) // червоне, світлофор на 13
+                if (lightStates[1] == 0 && nextPos == 10) // червоне, світлофор на 13
                 {
                     // зупинитися, не рухаємо
                 }
@@ -141,7 +141,7 @@ class Program
         for (int y = 0; y < height; y++)
         {
             Console.SetCursorPosition(centerX, y);
-            Console.Write("│");
+            Console.Write("|");
         }
     }
 }
