@@ -8,7 +8,7 @@ class Program
     static int[] lightDurations = { 10, 10 };
 
     static int[] horizontalCarPositions = { 0, 20 };
-    static int[] horizontalCarSpeeds = { 1, 2 };
+    static int[] horizontalCarSpeeds = { 1, 1 };
     static int[] verticalCarPositions = { 0, 10 };
     static int[] verticalCarSpeeds = { 1, 1 };
 
@@ -27,7 +27,6 @@ class Program
 
         while (true)
         {
-
             DrawRoad(roadWidth, roadHeight);
 
             // Режим 1 — нормальний: оновлюємо світлофори
@@ -44,21 +43,20 @@ class Program
                 }
             }
 
-            // Відображення світлофорів
+            // Відображення світлофорів з таймерами
             if (mode == 2)
             {
-                // блимає жовтий (стан = 1)
-                DisplayTrafficLights(20, 9, 1);
-                DisplayTrafficLights(40, 9, 1);
-                DisplayTrafficLights(29, 5, 1);
-                DisplayTrafficLights(29, 13, 1);
+                DisplayTrafficLights(20, 9, 1, -1);
+                DisplayTrafficLights(40, 9, 1, -1);
+                DisplayTrafficLights(29, 5, 1, -1);
+                DisplayTrafficLights(29, 13, 1, -1);
             }
             else
             {
-                DisplayTrafficLights(20, 9, lightStates[0]);
-                DisplayTrafficLights(40, 9, lightStates[0]);
-                DisplayTrafficLights(29, 5, lightStates[1]);
-                DisplayTrafficLights(29, 13, lightStates[1]);
+                DisplayTrafficLights(20, 9, lightStates[0], GetRemainingTime(0));
+                DisplayTrafficLights(40, 9, lightStates[0], GetRemainingTime(0));
+                DisplayTrafficLights(29, 5, lightStates[1], GetRemainingTime(1));
+                DisplayTrafficLights(29, 13, lightStates[1], GetRemainingTime(1));
             }
 
             // Рух автомобілів
@@ -67,7 +65,7 @@ class Program
                 int nextPos = (horizontalCarPositions[i] + horizontalCarSpeeds[i]) % roadWidth;
 
                 bool canMove = true;
-                if (mode != 2) // якщо не жовтий блимає
+                if (mode != 2)
                 {
                     if ((mode == 1 || mode == 3) && lightStates[0] == 0 && nextPos == 27)
                     {
@@ -98,7 +96,6 @@ class Program
 
             DisplayAllCars(roadWidth, roadHeight);
 
-            // Назва режиму
             Console.SetCursorPosition(0, 0);
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write("Режим: ");
@@ -125,7 +122,12 @@ class Program
         }
     }
 
-    static void DisplayTrafficLights(int x, int y, int state)
+    static int GetRemainingTime(int lightIndex)
+    {
+        return lightDurations[lightIndex] - lightCounters[lightIndex];
+    }
+
+    static void DisplayTrafficLights(int x, int y, int state, int timeLeft)
     {
         Console.SetCursorPosition(x, y);
         Console.Write("(");
@@ -147,6 +149,16 @@ class Program
         Console.Write("●");
         Console.ForegroundColor = ConsoleColor.White;
         Console.Write(")");
+
+        Console.SetCursorPosition(x, y + 3);
+        if (timeLeft >= 0)
+        {
+            Console.Write($" {timeLeft,2}с ");
+        }
+        else
+        {
+            Console.Write("     ");
+        }
     }
 
     static void DisplayAllCars(int roadWidth, int roadHeight)
