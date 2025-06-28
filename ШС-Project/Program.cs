@@ -67,7 +67,8 @@ class Program
                 bool canMove = true;
                 if (mode != 2)
                 {
-                    if ((mode == 1 || mode == 3) && lightStates[0] == 0 && nextPos == 27)
+                    if ((mode == 1 || mode == 3) && lightStates[0] == 0 && nextPos >= 27 && nextPos <= 29)
+
                     {
                         canMove = false;
                     }
@@ -153,7 +154,7 @@ class Program
         Console.SetCursorPosition(x, y + 3);
         if (timeLeft >= 0)
         {
-            Console.Write($" {timeLeft,2}с ");
+            Console.Write($" {timeLeft,3}с ");
         }
         else
         {
