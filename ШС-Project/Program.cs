@@ -8,7 +8,7 @@ class Program
     static int[] lightDurations = { 10, 10 };
 
     static int[] horizontalCarPositions = { 0, 20 };
-    static int[] horizontalCarSpeeds = { 1, 1 };
+    static int[] horizontalCarSpeeds = { 1, 2 };
     static int[] verticalCarPositions = { 0, 10 };
     static int[] verticalCarSpeeds = { 1, 1 };
 
